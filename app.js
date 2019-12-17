@@ -17,10 +17,15 @@ SwaggerExpress.create(config, function(err, swaggerExpress) {
   var port = process.env.PORT || 10010;
   app.listen(port);
 
+  const greeting = `
+  Try one of the following routes:\n
+  [Hello, World] ....... curl http://localhost:${ port }/hello?name=Kimberly
+  [Config] ............. curl http://localhost:${ port }/config
+  [Guidance] ........... curl http://localhost:${ port }/guidance
+  [Endpoint Details] ... curl http://localhost:${ port }/swagger
+`
+
   if (swaggerExpress.runner.swagger.paths['/hello']) {
-    console.log('Try one of the following routes:');
-    console.log(` - curl http://localhost:${ port }/hello?name=Kimberly`);
-    console.log(` - curl http://localhost:${ port }/config`);
-    console.log(` - curl http://localhost:${ port }/guidance`);
+    console.log(greeting);
   }
 });
