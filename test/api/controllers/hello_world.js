@@ -1,48 +1,42 @@
-var should = require('should');
-var request = require('supertest');
-var server = require('../../../app');
+var should = require('should')
+var request = require('supertest')
+var api = require('../../../app')
 
-describe('controllers', function() {
+describe('controllers', () => {
 
-  describe('hello_world', function() {
+    describe('hello_world', () => {
 
-    describe('GET /hello', function() {
+        describe('GET /hello', () => {
 
-      it('should return a default string', function(done) {
+            it('should return a default string', done => {
+                request(api)
+                    .get('/hello')
+                    .set('Accept', 'application/json')
+                    .expect('Content-Type', /json/)
+                    .expect(200)
+                    .end(function(err, res) {
+                        should.not.exist(err)
+                        res.body.should.eql('Hello, stranger!')
+                        done()
+                    })
+            })
 
-        request(server)
-          .get('/hello')
-          .set('Accept', 'application/json')
-          .expect('Content-Type', /json/)
-          .expect(200)
-          .end(function(err, res) {
-            should.not.exist(err);
+            it('should accept a name parameter', done => {
+                request(api)
+                    .get('/hello')
+                    .query({ name: 'Joe'})
+                    .set('Accept', 'application/json')
+                    .expect('Content-Type', /json/)
+                    .expect(200)
+                    .end(function(err, res) {
+                        should.not.exist(err)
+                        res.body.should.eql('Hello, Joe!')
+                        done()
+                    })
+            })
 
-            res.body.should.eql('Hello, stranger!');
+        })
 
-            done();
-          });
-      });
+    })
 
-      it('should accept a name parameter', function(done) {
-
-        request(server)
-          .get('/hello')
-          .query({ name: 'Scott'})
-          .set('Accept', 'application/json')
-          .expect('Content-Type', /json/)
-          .expect(200)
-          .end(function(err, res) {
-            should.not.exist(err);
-
-            res.body.should.eql('Hello, Scott!');
-
-            done();
-          });
-      });
-
-    });
-
-  });
-
-});
+})
