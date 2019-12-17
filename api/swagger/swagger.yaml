@@ -70,6 +70,28 @@ paths:
       description: Returns guidance information
       # controller  method name to call
       operationId: getGuidance
+      parameters:
+        - name: patient_id
+          in: query
+          description: ID of the patient to query
+          required: true
+          type: string
+        - name: model
+          in: query
+          description: Model to query
+          required: true
+          type: string
+        - name: model_plugin_id
+          in: query
+          description: ID of the model plugin
+          required: true
+          type: string
+        - name: timestamp
+          in: query
+          description: The timestamp of ... ?
+          required: true
+          type: string
+          format: date-time
       responses:
         "200":
           description: Success

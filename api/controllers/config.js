@@ -1,14 +1,21 @@
 'use strict';
 
-var util = require('util');
+const util = require('util');
 
 module.exports = {
   getConfig: getConfig
 };
 
 function getConfig(req, res) {
-  var response = util.format({ message :'Config!' });
+  const response = [
+    {
+      aggregator_plugin_id: '',
+      data_provider_plugin_id: '',
+      phenotype_mapping_plugin_id: '',
+      default_units: [],
+      model: [],
+    }
+  ]
 
-  // this sends back a JSON response which is a single string
   res.json(response);
 }
