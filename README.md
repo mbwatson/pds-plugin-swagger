@@ -101,13 +101,15 @@ done
 
 ## Deployment
 
-1. Build the image, tag appropriately.
+### Build the Image
+
+To build the Docker image, execute the following command, providing the desired tag.
 
 ```bash
 $ docker build -t pds-stub .
 ```
 
-2. Run the API.
+### Run the API
 
 Execute the command to serve the API from within a Docker container.
 
@@ -142,6 +144,6 @@ $ docker run -d --name pds-stub-plugin --rm -p 8888:10010 pds-stub
 2ac4faa7298c91e2936d465a792025b44147d780b03d573c0f5fda96f6b801c0
 ```
 
-3. Use the API.
+### Use the API
 
 Navigate to `http://localhost:[port]/swagger` in your browser to view details of the enpoints defined in your API.
